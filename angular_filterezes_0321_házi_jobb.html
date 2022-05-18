@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="angular.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Gyümölcskosár
+	</title>
+
+</head>
+<body>
+
+<div id="app" ng-app="app">
+	<div id="controller" ng-controller="controller">
+		<form>
+			<h1>Gyümölcskosár</h1>
+			Gyümölcs választó:
+			<br>
+			<select ng-model="ertek">
+				<option ng-repeat="e in termekek" value="{{e.nev}}"> {{  e.nev }}
+			</select>
+			<br>
+			<br>
+			Mennyiség:
+			<br>
+			<input id="mennyi" type="" name="" ng-model="mennyi">
+			<br><br>
+			<button ng-click="bele()"> {{ button_label }} </button>
+			<button class="torol" ng-click="torol()"> Kosár ürítése </button>
+			<button class="szerk" ng-click="szerk()"> Kosár szerkesztése </button>
+		</form>
+		
+
+		<div style="position:relative;">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+			  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+			</svg>
+			<div  class="kor"> {{ kosar_db }} </div>
+			</div>
+			<br><br>
+			<table ng-if="ksr_szrk">
+				<tr ng-repeat="e in kosar" >
+					<td> {{e.ertek}} </td>
+					<td> <input value="{{e.db}}" ng-model="kosar[$index].db" >  </td>
+				</tr>
+				<tr>
+					<td> <button ng-click="cancel()" >Mégsem</button></td>
+					<td> <button class="torol" ng-click="szerk_bef()" > Szerk.bef.</button></td>
+				</tr>
+
+			</table>
+
+	</div>
+</div>
+
+</body>
+<script type="text/javascript" src="angedit.js" ></script>
+</html>
